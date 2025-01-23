@@ -24,8 +24,10 @@ public class DestroyManager : MonoBehaviour
     private IEnumerator Start()
     {
         if(destroyTypev == DestroyType.Delay)
-        yield return new WaitForSeconds(delay);
-        Destroy(gameDestroy);
+        {
+            yield return new WaitForSeconds(delay);
+            Destroy(gameDestroy);
+        }
     }
 }
 
