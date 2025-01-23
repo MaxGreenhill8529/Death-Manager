@@ -4,6 +4,7 @@ using UnityEngine;
 public class DestroyManager : MonoBehaviour
 {
     public DestroyType destroyType;
+    [SerializeField] private float delay;
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(destroyType == DestroyType.CollisionEnter2D)
@@ -14,17 +15,23 @@ public class DestroyManager : MonoBehaviour
 
     private void OnBecameInvisible()
     {
-        
+        if(destroyType == DestroyType.OnBecameInvisible)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private IEnumerator Start()
     {
-        yield return new WaitForSeconds(0f);
+        if(destroyTypev == DestroyType.Delay)
+        yield return new WaitForSeconds(delay);
+        Destroy(gameDestroy);
     }
 }
 
 public enum DestroyType
 {
     Delay,
-    CollisionEnter2D
+    CollisionEnter2D,
+    OnBecameInvisible
 }
